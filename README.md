@@ -2,7 +2,7 @@
 # Tesla Clone App
 
 Building Tesla Clone App with React Js, Redux, Styled Component,
-Material-UI, Google Authentication, Firebase Hosting,
+Material-UI, Firebase Hosting,
 with complete user authentication (a mobile-friendly)
 
 # Table of contents
@@ -12,7 +12,6 @@ with complete user authentication (a mobile-friendly)
 -  [Technologies](#Technologies)
 -  [Optimizations](#Optimizations)
 -  [Contributing](#Contributing)
--  [Features](#Features)
 -  [Status](#status)
 -  [Inspiration](#inspiration)
 -  [Support](#Support)

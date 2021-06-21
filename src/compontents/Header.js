@@ -66,7 +66,7 @@ const Header = () => {
 				{cars &&
 					cars.map((car) => {
 						return (
-							<li>
+							<li key={uuidv4()}>
 								<a href='#'>{car}</a>
 							</li>
 						);

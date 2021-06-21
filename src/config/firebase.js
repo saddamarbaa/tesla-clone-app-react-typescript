@@ -19,3 +19,6 @@ const provider = new firebase.auth.GoogleAuthProvider();
 export { auth, provider };
 
 export default db;
+
+// deployed link
+// https://tesla-clone-reactjs.web.app/

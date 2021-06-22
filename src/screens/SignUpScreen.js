@@ -111,13 +111,6 @@ const SignUpScreen = () => {
 							required></input> */}
 
 						<button
-							disabled={
-								!firstNameValue ||
-								!lastNameValue ||
-								!emailValue ||
-								!passwordValue ||
-								!rePasswordValue
-							}
 							onClick={registerUserWithEmailAndPasswordHandler}
 							class='button create-button'
 							type='submit'

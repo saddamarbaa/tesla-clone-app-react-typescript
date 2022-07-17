@@ -1,9 +1,8 @@
 
 # Tesla Clone App
 
-Building Tesla Clone App with React Js, Redux, Styled Component,
-Material-UI, Firebase Hosting,
-with complete user authentication (a mobile-friendly)
+Building Tesla Clone App with React Js, TypeScript, Redux, Styled Component,
+Material-UI, Vercel Hosting, with complete user authentication (a mobile-friendly).
 
 # Table of contents
 
@@ -19,7 +18,7 @@ with complete user authentication (a mobile-friendly)
 -  [Screenshots](#Screenshots)
 -  [Run Locally](#Run_Locally)
 -  [Environment Variables](#Environment)
--  [Deployment](#Deployment)
+
 
 # Author
 
@@ -30,19 +29,20 @@ with complete user authentication (a mobile-friendly)
 **Client:**
 
 -  React Js
+-  TypeScript
 -  Redux
 -  Styled Component
 -  Material-UI
 
 **Server:**
 
--  Firebase Hosting
+-  Vercel Hosting
 -  Firebase Google Authentication
 -  Firebase Email and password Authentication
 
 # Demo
 
-## <a href="https://tesla-clone-reactjs.web.app">LIVE DEMO</a>
+## <a href="https://tesla-clone-app-neon.vercel.app/">LIVE DEMO</a>
 
 <!-- ###  <a href="https://www.loom.com/share/545edc779b964d2095f9dd5a5d22a0b4"> Live Video Demo </a> -->
 
@@ -86,13 +86,13 @@ https://www.facebook.com/saddam.arbaa
 Clone the project
 
 ```bash
-  https://github.com/saddamarbaa/tesla-clone
+  https://github.com/saddamarbaa/tesla-clone-app-react-typescript
 ```
 
 Go to the project directory
 
 ```bash
-  cd tesla-clone
+  cd tesla-clone-app-react-typescript
 ```
 
 Install dependencies
@@ -128,77 +128,39 @@ Project is: in progress I'm working on it in my free time
 
 Build By Saddam Arbaa Project inspired by [Tesla] https://www.tesla.com/
 
-# Deployment
 
-To deploy this project on firebase Flow the firebase documentation <a href="https://firebase.google.com/docs">Firebase Documentation</a>
-
--  create a new project on firebase
--  npm install -g firebase-tools
--  firebase init
--  npm run build
--  firebase deploy
 
 # Screenshots
 
 ## Registration Page
+![image](https://user-images.githubusercontent.com/51326421/179383163-3581be5c-03b4-4a59-87c8-9ded67c0dcc6.png)
 
-![image](https://user-images.githubusercontent.com/51326421/122808782-811f4f80-d2f7-11eb-81b0-7550f8dd162f.png)
+
+![image](https://user-images.githubusercontent.com/51326421/179383172-9f77f29d-f005-4e5d-bc83-edfeaa630a79.png)
+
+
+![image](https://user-images.githubusercontent.com/51326421/179383178-8f9b5049-6bae-40bc-9c78-9340259f0740.png)
+
 
 ## Sign in page
 
-![image](https://user-images.githubusercontent.com/51326421/122808887-9f854b00-d2f7-11eb-8ea4-4470126a03d8.png)
+![image](https://user-images.githubusercontent.com/51326421/179383094-4e81efef-66ea-4b27-bf88-13e110bcdea4.png)
+
+
+![image](https://user-images.githubusercontent.com/51326421/179383130-37754a0d-46ee-4720-bd7f-44274dc3c7e6.png)
+
+
+![image](https://user-images.githubusercontent.com/51326421/179383142-49a8946b-9ff1-4386-b3ba-5581e06cc3a2.png)
+
 
 ## Home Page
 
-![image](https://user-images.githubusercontent.com/51326421/122809078-d4919d80-d2f7-11eb-9737-0101e2b23c66.png)
-<<<<<<< HEAD
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+![image](https://user-images.githubusercontent.com/51326421/179383022-e608b3c0-5c41-4c0c-88ab-74782aa0c774.png)
 
-## Available Scripts
 
-In the project directory, you can run:
+![image](https://user-images.githubusercontent.com/51326421/179383033-12199820-7fbc-40de-8f89-6b578463b98f.png)
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![image](https://user-images.githubusercontent.com/51326421/179383045-d5b7352c-d6ff-46c7-a0b4-2ef355cea1be.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-# To learn React, check out the [React documentation](https://reactjs.org/).
-
-# tesla-clone
-
-Building the Tesla Clone with ReactJS (Redux + Styled Components)
-
-> > > > > > > a303d22f96aec4621862e9deb5e8260df6533ff5

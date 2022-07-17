@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Header from './compontents/Header'
-import Home from './compontents/Home'
+import Header from './components/Header'
+import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import SignUpScreen from './screens/SignUpScreen'
 import { auth } from './config/firebase'
@@ -14,6 +14,7 @@ import {
 	setLogOutState,
 	selectUser,
 } from './app/features/user/userSlice'
+import Footer from './components/Footer'
 
 function App() {
 	const dispatch = useDispatch()
@@ -56,7 +57,8 @@ function App() {
 					<Switch>
 						<Route path="/" exact>
 							<Header />
-							<Home />
+							<HomeScreen />
+							<Footer />
 						</Route>
 						<Route path="/login" exact>
 							<LoginScreen />

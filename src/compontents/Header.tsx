@@ -1,53 +1,52 @@
-/** @format */
+import { memo, useState } from 'react'
+import styled from 'styled-components'
+import MenuIcon from '@material-ui/icons/Menu'
+import { IconButton } from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close'
+import { useSelector } from 'react-redux'
+import { v4 as uuidv4 } from 'uuid'
+import { useHistory } from 'react-router'
 
-import { memo, React, useState } from "react";
-import styled from "styled-components";
-import MenuIcon from "@material-ui/icons/Menu";
-import { IconButton } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import { selectCar } from "../app/features/car/carSlice";
-import { useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import { useHistory } from "react-router";
+import { selectCar } from '../app/features/car/carSlice'
 
 const Header = () => {
-	const [burgerMenuStatus, SetBurgerMenuStatus] = useState(false);
-	const cars = useSelector(selectCar);
-	const history = useHistory();
+	const [burgerMenuStatus, SetBurgerMenuStatus] = useState(false)
+	const cars = useSelector(selectCar)
+	const history = useHistory()
 
 	return (
 		<Wrapper>
 			<ImageContainer>
-				<img src='/images/logo.svg' alt='logo' />
+				<img src="/images/logo.svg" alt="logo" />
 			</ImageContainer>
 
 			<Menu>
 				{cars &&
 					cars.map((car) => {
 						return (
-							<a key={uuidv4()} href='#'>
+							<a key={uuidv4()} href="#">
 								{car}
 							</a>
-						);
+						)
 					})}
 				<a>Solar Roof</a>
 				<a>Solar Panels</a>
 			</Menu>
 
 			<RightMenu>
-				<a className='shop'>Shop</a>
-				<a onClick={() => history.push("/register")}>Tesla Account</a>
+				<a className="shop">Shop</a>
+				<a onClick={() => history.push('/register')}>Tesla Account</a>
 				<IconButton>
 					<CustomMenu
 						onClick={() => {
-							SetBurgerMenuStatus(true);
+							SetBurgerMenuStatus(true)
 						}}></CustomMenu>
 				</IconButton>
 			</RightMenu>
 
 			<HiddenCustomMenu
 				onClick={() => {
-					SetBurgerMenuStatus(true);
+					SetBurgerMenuStatus(true)
 				}}></HiddenCustomMenu>
 
 			<BurgerNav showMenu={burgerMenuStatus}>
@@ -55,21 +54,21 @@ const Header = () => {
 					<IconButton>
 						<CustomClsoeIcon
 							onClick={() => {
-								SetBurgerMenuStatus(false);
+								SetBurgerMenuStatus(false)
 							}}></CustomClsoeIcon>
 					</IconButton>
 				</CustomClsoeIconWrapper>
 				<li>
-					<a onClick={() => history.push("/register")}>Tesla Account</a>
+					<a onClick={() => history.push('/register')}>Tesla Account</a>
 				</li>
 
 				{cars &&
 					cars.map((car) => {
 						return (
 							<li key={uuidv4()}>
-								<a href='#'>{car}</a>
+								<a href="#">{car}</a>
 							</li>
-						);
+						)
 					})}
 
 				<li>
@@ -89,10 +88,14 @@ const Header = () => {
 				</li>
 			</BurgerNav>
 		</Wrapper>
-	);
-};
+	)
+}
 
-export default memo(Header);
+export default memo(Header)
+
+interface StyleProps {
+	showMenu: boolean
+}
 
 const Wrapper = styled.div`
 	top: 0;
@@ -108,13 +111,13 @@ const Wrapper = styled.div`
 	@media (max-width: 992px) {
 		justify-content: space-between;
 	}
-`;
+`
 
 const ImageContainer = styled.div`
 	@media (max-width: 568px) {
 		margin-right: 15px;
 	}
-`;
+`
 
 const Menu = styled.div`
 	display: flex;
@@ -147,7 +150,7 @@ const Menu = styled.div`
 	@media (max-width: 992px) {
 		display: none;
 	}
-`;
+`
 
 const RightMenu = styled.div`
 	display: flex;
@@ -175,12 +178,12 @@ const RightMenu = styled.div`
 	@media (max-width: 568px) {
 		display: none;
 	}
-`;
+`
 
 const CustomMenu = styled(MenuIcon)`
 	cursor: pointer;
 	margin-left: 10px;
-`;
+`
 
 const HiddenCustomMenu = styled(MenuIcon)`
 	display: none !important;
@@ -188,11 +191,11 @@ const HiddenCustomMenu = styled(MenuIcon)`
 	@media (max-width: 568px) {
 		display: block !important;
 	}
-`;
+`
 
-const BurgerNav = styled.div`
+const BurgerNav = styled.div<StyleProps>`
 	transform: ${(props) =>
-		props.showMenu ? "translateX(0)" : "translateX(100%)"};
+		props?.showMenu ? 'translateX(0)' : 'translateX(100%)'};
 	transition: transform 0.3s;
 	position: fixed;
 	top: 0;
@@ -211,14 +214,14 @@ const BurgerNav = styled.div`
 	a {
 		cursor: pointer;
 	}
-`;
+`
 
 const CustomClsoeIconWrapper = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
-`;
+`
 
 const CustomClsoeIcon = styled(CloseIcon)`
 	cursor: pointer;
-`;
+`

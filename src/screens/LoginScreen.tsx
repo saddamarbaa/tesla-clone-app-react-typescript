@@ -144,10 +144,12 @@ const LoginScreen = () => {
 					<a onClick={signInWithGoogleHandler}>Login With Google</a>
 				</SignWthGoogleContainer>
 
-				<CreateAccountContainer onClick={() => setSignIn(() => true)}>
-					<a onClick={registerUserWithEmailAndPasswordHandler}>
-						Create an account
-					</a>
+				<CreateAccountContainer>
+					<div onClick={() => setSignIn(() => true)}>
+						<a onClick={registerUserWithEmailAndPasswordHandler}>
+							Create an account
+						</a>
+					</div>
 				</CreateAccountContainer>
 			</Container>
 		</LogInWrapper>

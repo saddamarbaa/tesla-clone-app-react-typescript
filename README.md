@@ -18,6 +18,7 @@ Material-UI, Vercel Hosting, with complete user authentication (a mobile-friendl
 -  [Screenshots](#Screenshots)
 -  [Run Locally](#Run_Locally)
 -  [Environment Variables](#Environment)
+-  [Related Projects](#Related_Projects)
 
 
 # Author
@@ -44,7 +45,48 @@ Material-UI, Vercel Hosting, with complete user authentication (a mobile-friendl
 
 ## <a href="https://tesla-clone-app-neon.vercel.app/">LIVE DEMO</a>
 
-<!-- ###  <a href="https://www.loom.com/share/545edc779b964d2095f9dd5a5d22a0b4"> Live Video Demo </a> -->
+
+# Related_Projects
+
+###  Netflix Clone App built with React Js + TypeScript + Redux + Stripe Checkout/Payments + Vercel Hosting + Firebase
+
+###  <a href="https://github.com/saddamarbaa/netflix-clone-app-react-typescript"> Github Repo </a>
+###  <a href="https://netflix-clone-app-react-typescript.vercel.app/">LIVE DEMO</a>
+
+
+###  LinkedIn Clone App built with  React Js + TypeScript + Redux + Styled Components + Material-UI + Firebase Realtime Database + Vercel Hosting 
+
+###  <a href="https://github.com/saddamarbaa/LinkedIn-clone-app-react-typescript"> Github Repo </a>
+###  <a href="https://linkedin-clone-app-navy.vercel.app/">LIVE DEMO</a>
+
+### Airbnb Clone App built with React Js + Next Js + TypeScript + Redux + Tailwind CSS
+
+### <a href="https://github.com/saddamarbaa/airbnb-clone-app-nex-js"> Github Repo </a>
+
+### <a href="https://airbnb-clone-app-nex-js.vercel.app/">LIVE DEMO</a>
+
+### Amazon Clone App built with React Js + TypeScript + Redux + Styled Components
+
+### <a href="https://github.com/saddamarbaa/amazon-clone-app-react-typescript"> Github Repo </a>
+
+### <a href="https://amazon-clone-murex-six.vercel.app/">LIVE DEMO</a>
+
+### Facebook Clone App built with React Js + Next Js + TypeScript + Redux + Styled Components
+
+### <a href="https://github.com/saddamarbaa/facebook-clone-app-nex-js"> Github Repo </a>
+
+### <a href="https://facebook-clone-app-nex-js.vercel.app/">LIVE DEMO</a>
+
+### Instagram Clone App built with React Js + Next Js + TypeScript + Redux + Tailwind CSS + Heroicons
+
+### <a href="https://github.com/saddamarbaa/Instagram-clone-app-nex-js"> Github Repo </a>
+
+### <a href="https://instagram-clone-app-nex-js.vercel.app/">LIVE DEMO</a>
+
+
+
+
+
 
 # Optimizations
 

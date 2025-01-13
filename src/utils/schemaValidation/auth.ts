@@ -10,6 +10,8 @@ export const signupSchemaValidation = Yup.object().shape({
 		.max(40, 'Password must not exceed 40 characters'),
 	confirmPassword: Yup.string()
 		.required('Confirm Password is required')
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		.oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
 })
 

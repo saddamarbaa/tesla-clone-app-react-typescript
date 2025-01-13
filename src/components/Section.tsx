@@ -1,14 +1,12 @@
-import { memo } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-// @ts-ignore
-import Fade from 'react-reveal/Fade'
+import { useSpring, animated } from 'react-spring'
 
 export interface ISection {
 	title: string
 	description: string
 	backgroundImage: string
 	leftButtonText?: string
-	rightButtonTex?: string
 	rightButtonText?: string
 }
 
@@ -23,28 +21,63 @@ const Section = ({
 	leftButtonText,
 	rightButtonText,
 }: ISection) => {
+	const [inView, setInView] = useState(false)
+
+	// Set up Intersection Observer to detect when the component is visible
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						setInView(true)
+					} else {
+						setInView(false)
+					}
+				})
+			},
+			{ threshold: 0.3 }, // Trigger when 30% of the section is in view
+		)
+
+		const section = document.getElementById(title) // Get element by title ID
+		if (section) observer.observe(section)
+
+		return () => {
+			if (section) observer.unobserve(section)
+		}
+	}, [title])
+
+	const fadeIn = useSpring({
+		from: { opacity: 0, transform: 'translateY(50px)' },
+		to: {
+			opacity: inView ? 1 : 0,
+			transform: inView ? 'translateY(0px)' : 'translateY(50px)',
+		},
+		reset: inView, // Reset animation when component comes into view
+		delay: 200,
+	})
+
 	return (
-		<Wrapper backgroundImage={backgroundImage}>
-			<Fade bottom>
+		<Wrapper id={title} backgroundImage={backgroundImage}>
+			<animated.div style={fadeIn}>
 				<ItemText>
 					<h1>{title}</h1>
 					<p>{description} </p>
 				</ItemText>
-			</Fade>
+			</animated.div>
 			<ButtonWrapper>
-				<Fade bottom>
+				<animated.div style={fadeIn}>
 					<ButtonsGroup>
 						<LeftButton>{leftButtonText}</LeftButton>
 						{rightButtonText && <RightButton>{rightButtonText}</RightButton>}
 					</ButtonsGroup>
-				</Fade>
+				</animated.div>
 				<DownArrow src="/images/down-arrow.svg" />
 			</ButtonWrapper>
 		</Wrapper>
 	)
 }
 
-export default memo(Section)
+export default Section
 
 const Wrapper = styled.div<StyleProps>`
 	width: 100vw;
@@ -100,6 +133,6 @@ const RightButton = styled(LeftButton)`
 
 const DownArrow = styled.img`
 	height: 40px;
-	animation: animateDown infinite 1.5ms;
+	animation: animateDown infinite 1.5s;
 	overflow-x: hidden;
 `

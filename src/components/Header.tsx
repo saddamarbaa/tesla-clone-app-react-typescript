@@ -1,18 +1,14 @@
 import { memo, useState } from 'react'
 import styled from 'styled-components'
-import MenuIcon from '@material-ui/icons/Menu'
-import { IconButton } from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close'
-import { useSelector } from 'react-redux'
+import { FaBars, FaTimes } from 'react-icons/fa'
 import { v4 as uuidv4 } from 'uuid'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router'
 
-import { selectCar } from '../app/features/car/carSlice'
-
+const cars = ['Model S', 'Model 3', 'Model X', 'Model Y']
 const Header = () => {
 	const [burgerMenuStatus, SetBurgerMenuStatus] = useState(false)
-	const cars = useSelector(selectCar)
-	const history = useHistory()
+
+	const history = useNavigate()
 
 	return (
 		<Wrapper>
@@ -35,31 +31,22 @@ const Header = () => {
 
 			<RightMenu>
 				<a className="shop">Shop</a>
-				<a onClick={() => history.push('/register')}>Tesla Account</a>
+				<a onClick={() => history('/register')}>Tesla Account</a>
 				<IconButton>
-					<CustomMenu
-						onClick={() => {
-							SetBurgerMenuStatus(true)
-						}}></CustomMenu>
+					<CustomMenu onClick={() => SetBurgerMenuStatus(true)} />
 				</IconButton>
 			</RightMenu>
 
-			<HiddenCustomMenu
-				onClick={() => {
-					SetBurgerMenuStatus(true)
-				}}></HiddenCustomMenu>
+			<HiddenCustomMenu onClick={() => SetBurgerMenuStatus(true)} />
 
 			<BurgerNav showMenu={burgerMenuStatus}>
-				<CustomClsoeIconWrapper>
+				<CustomCloseIconWrapper>
 					<IconButton>
-						<CustomClsoeIcon
-							onClick={() => {
-								SetBurgerMenuStatus(false)
-							}}></CustomClsoeIcon>
+						<CustomCloseIcon onClick={() => SetBurgerMenuStatus(false)} />
 					</IconButton>
-				</CustomClsoeIconWrapper>
+				</CustomCloseIconWrapper>
 				<li>
-					<a onClick={() => history.push('/register')}>Tesla Account</a>
+					<a onClick={() => history('/register')}>Tesla Account</a>
 				</li>
 
 				{cars &&
@@ -180,12 +167,12 @@ const RightMenu = styled.div`
 	}
 `
 
-const CustomMenu = styled(MenuIcon)`
+const CustomMenu = styled(FaBars)`
 	cursor: pointer;
 	margin-left: 10px;
 `
 
-const HiddenCustomMenu = styled(MenuIcon)`
+const HiddenCustomMenu = styled(FaBars)`
 	display: none !important;
 
 	@media (max-width: 568px) {
@@ -216,12 +203,19 @@ const BurgerNav = styled.div<StyleProps>`
 	}
 `
 
-const CustomClsoeIconWrapper = styled.div`
+const CustomCloseIconWrapper = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
 `
 
-const CustomClsoeIcon = styled(CloseIcon)`
+const CustomCloseIcon = styled(FaTimes)`
 	cursor: pointer;
+`
+
+const IconButton = styled.div`
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `

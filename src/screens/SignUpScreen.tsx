@@ -1,24 +1,26 @@
 import styled from 'styled-components'
-import { useHistory } from 'react-router'
-import React, { memo, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import { auth } from '../config/firebase'
-import { UserType } from '../types'
+import { auth, createUserWithEmailAndPassword } from '../config/firebase'
+
 import { signupSchemaValidation } from '../utils'
 import LogInScreen from './LoginScreen'
+import { useNavigate } from 'react-router'
+import { FirebaseError } from 'firebase/app'
 
 const SignUpScreen = () => {
 	const [logIn, setLogIn] = useState<boolean>(false)
-	const history = useHistory()
+	const history = useNavigate()
 
 	const {
 		register,
 		handleSubmit,
-		reset,
+		// reset,
 		formState: { errors },
-	} = useForm<UserType>({
+	} = useForm({
 		resolver: yupResolver(signupSchemaValidation),
 	})
 
@@ -36,21 +38,28 @@ const SignUpScreen = () => {
 		return <LogInScreen />
 	}
 
-	//  Function to Create User with given name and password
-	const registerUserWithEmailAndPasswordHandler = (data: UserType) => {
-		auth
-			.createUserWithEmailAndPassword(data.email, data.password)
-			.then((registeredUser) => {
-				history.push('/login')
-				// Registered successful.
-				// console.log(registeredUser);
-			})
-			.catch((error) => {
-				// An error happened.
-				// const errorCode = error.code;
-				const errorMessage = error.message
-				alert(errorMessage)
-			})
+	const registerUserWithEmailAndPasswordHandler = async (data: {
+		email: string
+		password: string
+	}) => {
+		console.log(JSON.stringify(data, null, 2))
+		try {
+			const userCredential = await createUserWithEmailAndPassword(
+				auth,
+				data.email,
+				data.password,
+			)
+
+			console.log('Signed in', userCredential)
+			setLogIn(true)
+			history('/login')
+		} catch (error: unknown) {
+			const firebaseError = error as FirebaseError
+			// const errorCode = firebaseError?.code
+			const errorMessage =
+				firebaseError?.message || 'Something went wrong with the registration'
+			alert(errorMessage)
+		}
 	}
 
 	return (
@@ -167,7 +176,7 @@ const SignUpScreen = () => {
 	)
 }
 
-export default memo(SignUpScreen)
+export default SignUpScreen
 
 const LogInWrapper = styled.div`
 	background: radial-gradient(transparent, hsl(0, 0%, 2%)),
@@ -198,7 +207,8 @@ const Container = styled.div`
 	position: fixed;
 	right: 7%;
 	top: 10px;
-	bottom: 2.5em;
+	padding-bottom: 3rem;
+	/* bottom: 2.5em; */
 	left: 51%;
 	border-radius: 10px;
 

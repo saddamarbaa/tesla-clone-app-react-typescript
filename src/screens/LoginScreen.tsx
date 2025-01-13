@@ -1,17 +1,25 @@
 import styled from 'styled-components'
-import { auth, provider } from '../config/firebase'
-import { useHistory } from 'react-router'
-import React, { memo, useEffect, useRef, useState } from 'react'
+
+import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import {
+	auth,
+	createUserWithEmailAndPassword,
+	googleProvider,
+	signInWithEmailAndPassword,
+	signInWithPopup,
+} from '../config/firebase'
 
 import SignUpScreen from './SignUpScreen'
 import { TAuth } from '../types'
 import { LoginSchemaValidation } from '../utils'
+import { useNavigate } from 'react-router'
+import { FirebaseError } from 'firebase/app'
 
 const LoginScreen = () => {
 	const [signIn, setSignIn] = useState(false)
-	const history = useHistory()
+	const history = useNavigate()
 	const emailReference = useRef<HTMLInputElement>(null)
 	const passwordReference = useRef<HTMLInputElement>(null)
 
@@ -35,61 +43,61 @@ const LoginScreen = () => {
 	if (signIn) {
 		return <SignUpScreen />
 	}
-	const signInWithEmailAndPasswordHandler = (data: TAuth) => {
+	const signInWithEmailAndPasswordHandler = async (data: TAuth) => {
 		console.log(JSON.stringify(data, null, 2))
 
-		auth
-			.signInWithEmailAndPassword(data.email, data.password)
-			.then((signInedUser) => {
-				// signIn successful.
-				// console.log(signInedUser);
-				history.push('/')
-			})
-			.catch((error) => {
-				// An error happened.
-				const errorCode = error.code
-				const errorMessage = error.message
-				alert(errorMessage)
-			})
+		try {
+			const userCredential = await signInWithEmailAndPassword(
+				auth,
+				data.email,
+				data.password,
+			)
+			if (userCredential.user) {
+				history('/')
+			}
+		} catch (error: unknown) {
+			const firebaseError = error as FirebaseError
+			// const errorCode = firebaseError?.code
+			const errorMessage = firebaseError?.message || 'Bad user credentials'
+			console.error(errorMessage)
+			alert(errorMessage)
+		}
 	}
 
 	//  Function to Create User with given name and password
-	const registerUserWithEmailAndPasswordHandler = (event: {
+	const registerUserWithEmailAndPasswordHandler = async (event: {
 		preventDefault: () => void
 	}) => {
 		event.preventDefault()
 		if (emailReference?.current && passwordReference?.current) {
-			auth
-				.createUserWithEmailAndPassword(
+			try {
+				await createUserWithEmailAndPassword(
+					auth,
 					emailReference.current.value,
 					passwordReference.current.value,
 				)
-				.then((registeredUser) => {
-					history.push('/')
-					// Registered successful.
-					// console.log(registeredUser);
-				})
-				.catch((error) => {
-					// An error happened.
-					const errorCode = error.code
-					const errorMessage = error.message
-					alert(errorMessage)
-				})
+				history('/')
+			} catch (error: unknown) {
+				const firebaseError = error as FirebaseError
+				// const errorCode = firebaseError?.code
+				const errorMessage = firebaseError?.message || 'Bad user credentials'
+				console.error(errorMessage)
+				alert(errorMessage)
+			}
 		}
 	}
 
-	const signInWithGoogleHandler = () => {
-		auth
-			.signInWithPopup(provider)
-			.then((signInedUser) => {
-				// signIn successful.
-				// console.log(signInedUser);
-				history.push('/')
-			})
-			.catch((error) => {
-				// An error happened.
-				// console.log(error);
-			})
+	const signInWithGoogleHandler = async () => {
+		try {
+			await signInWithPopup(auth, googleProvider)
+			history('/')
+		} catch (error: unknown) {
+			const firebaseError = error as FirebaseError
+			// const errorCode = firebaseError?.code
+			const errorMessage = firebaseError?.message || 'Bad user credentials'
+			console.error(errorMessage)
+			alert(errorMessage)
+		}
 	}
 
 	return (
@@ -156,7 +164,7 @@ const LoginScreen = () => {
 	)
 }
 
-export default memo(LoginScreen)
+export default LoginScreen
 
 const LogInWrapper = styled.div`
 	width: 100vw;
@@ -223,13 +231,18 @@ const Title = styled.h1`
 const SignWthGoogleContainer = styled.div`
 	display: flex;
 	align-items: center;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 24px;
+	margin-bottom: 18px;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: center;
+	cursor: pointer;
 
 	a {
 		cursor: pointer;
-		font-size: 15px !important;
+		font-size: 15.5px !important;
 		display: inline-block;
+		/* font-weight: bold; */
 
 		:hover {
 			text-decoration: underline;
